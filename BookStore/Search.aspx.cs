@@ -10,7 +10,9 @@ public partial class Search : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        SearchList serch = new SearchList();
         Customer cust = (Customer)(Session["customer"]);
         name.Text = cust.Username();
+        Label1.Text = serch.GetBooks();
     }
 }
