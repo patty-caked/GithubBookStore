@@ -5,18 +5,18 @@ using System.Text;
 using System.Web;
 
 /// <summary>
-/// Summary description for Book
+/// Books n' shit
 /// </summary>
 public class Book
 {
-    private int isbn;
+    private string isbn;
     private string title;
     private string author;
     private string semester;
     private string course;
-    private int section;
+    private string section;
     private string professor;
-    private int crn;
+    private string crn;
     private string requirement;
     private int quantityNew;
     private int quantityUsed;
@@ -31,14 +31,14 @@ public class Book
 
     public Book(string i, string tit, string auth, string semest, string cour, string sect, string prof, string c, string req, string quantN, string quantU, string quantR, string quantE, string priceN, string priceU, string priceR, string priceE, string descrip)
 	{
-        isbn = Convert.ToInt32(i);
+        isbn = i;
         title = tit;
         author = auth;
         semester = semest;
         course = cour;
-        section = Convert.ToInt32(sect);
+        section = sect;
         professor = prof;
-        crn = Convert.ToInt32(c);
+        crn = c;
         requirement = req;
         quantityNew = Convert.ToInt32(quantN);
         quantityUsed = Convert.ToInt32(quantU);
@@ -51,7 +51,7 @@ public class Book
         description = descrip;
 	}
 
-    public Book(int i, string tit, string auth, string semest, string cour, int sect, string prof, int c, string req, int quantN, int quantU, int quantR, int quantE, float priceN, float priceU, float priceR, float priceE, string descrip)
+    /*public Book(long i, string tit, string auth, string semest, string cour, int sect, string prof, int c, string req, int quantN, int quantU, int quantR, int quantE, float priceN, float priceU, float priceR, float priceE, string descrip)
     {
         isbn = i;
         title = tit;
@@ -71,9 +71,9 @@ public class Book
         priceRental = priceR;
         priceEBook = priceE;
         description = descrip;
-    }
+    }*/
 
-    public int ISBN()
+    public string ISBN()
     {
         return isbn;
     }
@@ -98,7 +98,7 @@ public class Book
         return course;
     }
 
-    public int Section()
+    public string Section()
     {
         return section;
     }
@@ -108,7 +108,7 @@ public class Book
         return professor;
     }
 
-    public int CRN()
+    public string CRN()
     {
         return crn;
     }

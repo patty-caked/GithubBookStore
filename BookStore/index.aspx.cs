@@ -15,6 +15,8 @@ public partial class index : System.Web.UI.Page
             userName = (String)(Session["username"]);
             name.Text = userName;
         }*/
+        CreditCard cc = new CreditCard(12345, 123, new DateTime(1992, 3, 30));
+        cc.ConfirmInfo();
     }
     protected void loginSubmit_Click(object sender, EventArgs e)
     {

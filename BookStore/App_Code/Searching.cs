@@ -8,38 +8,35 @@ using System.Web;
 /// <summary>
 /// Used for Searching
 /// </summary>
-public class SearchList
+public class Searching
 {
     private List<Book> bookList;
     private List<Book> results;
 
-	public SearchList()
+	public Searching()
 	{
-		
+        bookList = new List<Book>();
+        GenerateBookList();
 	}
 
-    public List<Book> GenerateBookList()
+    public void GenerateBookList()
     {
-        int counter = 0;
+        //int counter = 0;
         string line;
         System.IO.StreamReader file = new System.IO.StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/BookData/books.csv"));
         while ((line = file.ReadLine()) != null)
         {
             string[] b = line.Split(',');
+            //Holy fuuuuck man look at all these arguments!
             Book tempbook = new Book(b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7],b[8],b[9],b[10],b[11],b[12],b[13],b[14],b[15],b[16],b[17]);
-            bookList.Add();
+            bookList.Add(tempbook);
         }
-        //string[] words = file.ReadLine().Split(',');
 
         file.Close();
-
-
-        return b;
     }
 
     public String GetBooks()
     {
-        int counter = 0;
         string[] line;
         System.IO.StreamReader file = new System.IO.StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/BookData/books.csv"));
         /*while ((line = file.ReadLine()) != null)
@@ -48,12 +45,45 @@ public class SearchList
         }*/
         string[] words = file.ReadLine().Split(',');
 
-
         file.Close();
         
         return words[0];
+    }
 
+    public List<Book> ReturnResults()
+    {
+        return results;
+    }
 
+    public List<Book> BookList()
+    {
+        return bookList;
+    }
+
+    public void AddBookToResults(Book b)
+    {
+        results.Add(b);
+    }
+
+    public void RemoveBookFromResults(Book b)
+    {
+        results.Remove(b);
+    }
+
+    public void Search(string isbn, string title, string author, string semester, string course, string section, string professor, string crn, string required)
+    {
+        if (isbn != "")
+        {
+
+        }
+    }
+
+    public void SearchByISBN()
+    {
+        foreach (Book b in bookList)
+        {
+
+        }
     }
 
     public void SearchByTitle()
@@ -65,12 +95,7 @@ public class SearchList
     {
         throw new System.NotImplementedException();
     }
-
-    public void SearchByISBN()
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     public void SearchByCourse()
     {
         throw new System.NotImplementedException();
@@ -86,14 +111,6 @@ public class SearchList
         throw new System.NotImplementedException();
     }
 
-    public void ReturnResults()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void AddBookToResults()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
 }

@@ -11,6 +11,7 @@ public class Customer
 
     private String username;
     private String password;
+    ShoppingCart cart;
 
 	public Customer(String u, String p)
 	{

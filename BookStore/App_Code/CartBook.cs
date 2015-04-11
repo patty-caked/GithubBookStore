@@ -8,12 +8,21 @@ using System.Web;
 /// </summary>
 public class CartBook
 {
+    enum Type { New, Used, Rental, EBook }
     private Book book;
+    Type type;
+    int quantity;
 
-	public CartBook()
+	public CartBook(Book b, Type t, int q)
 	{
-		//
-		// TODO: Add constructor logic here
-		//
+        book = b;
+        type = t;
+        quantity = q;
 	}
+
+    public void ChangeType(Type t)
+    {
+        if (t == Type.EBook)
+        type = t;
+    }
 }

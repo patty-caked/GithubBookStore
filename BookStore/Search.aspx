@@ -26,13 +26,13 @@
 
             <p>
                 Search:
-                <asp:TextBox ID="searchBox" runat="server" Width="164px" OnTextChanged="searchBox_TextChanged"></asp:TextBox>
-            </p>
+                </p>
 
             <p>
                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </p>
         </div>
+        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
     </form>
     </body>
 </html>
