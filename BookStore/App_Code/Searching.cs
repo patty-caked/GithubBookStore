@@ -70,47 +70,255 @@ public class Searching
         results.Remove(b);
     }
 
-    public void Search(string isbn, string title, string author, string semester, string course, string section, string professor, string crn, string required)
+    public void Search(string isbn, string title, string author, string semester, string course, string section, string professor, string crn)
     {
         if (isbn != "")
         {
-
+            SearchByISBN(isbn);
         }
-    }
-
-    public void SearchByISBN()
-    {
-        foreach (Book b in bookList)
+        if (title != "")
         {
-
+            SearchByTitle(title);
+        }
+        if (author != "")
+        {
+            SearchByAuthor(author);
+        }
+        if (semester != "")
+        {
+            SearchBySemester(semester);
+        }
+        if (course != "")
+        {
+            SearchByCourse(course);
+        }
+        if (section != "")
+        {
+            SearchBySection(section);
+        }
+        if (professor != "")
+        {
+            SearchByProfessor(professor);
+        }
+        if (crn != "")
+        {
+            SearchByCRN(crn);
         }
     }
 
-    public void SearchByTitle()
+    private void SearchByISBN(string i)
     {
-        throw new System.NotImplementedException();
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.ISBN() == i)
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.ISBN() == i)
+                {
+                    results.Add(b);
+                }
+            }
+        }
     }
 
-    public void SearchByAuthor()
+    private void SearchByTitle(string tit)
     {
-        throw new System.NotImplementedException();
-    }
-    
-    public void SearchByCourse()
-    {
-        throw new System.NotImplementedException();
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Title().Contains(tit))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Title().Contains(tit))
+                {
+                    results.Add(b);
+                }
+            }
+        }
     }
 
-    public void SearchByProfessor()
+    private void SearchByAuthor(string auth)
     {
-        throw new System.NotImplementedException();
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Author().Contains(auth))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Author().Contains(auth))
+                {
+                    results.Add(b);
+                }
+            }
+        }
     }
 
-    public void SearchByCRN()
+    private void SearchByCourse(string cour)
     {
-        throw new System.NotImplementedException();
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Course().Contains(cour))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Title().Contains(cour))
+                {
+                    results.Add(b);
+                }
+            }
+        }
     }
 
-    
+    private void SearchByProfessor(string prof)
+    {
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Course().Contains(prof))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Title().Contains(prof))
+                {
+                    results.Add(b);
+                }
+            }
+        }
+    }
 
+    private void SearchByCRN(string c)
+    {
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.CRN().Contains(c))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.CRN() == c)
+                {
+                    results.Add(b);
+                }
+            }
+        }
+    }
+
+    private void SearchBySection(string sec)
+    {
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Section().Contains(sec))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Section() == sec)
+                {
+                    results.Add(b);
+                }
+            }
+        }
+    }
+
+    private void SearchBySemester(string semest)
+    {
+        if (results.Count > 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Semester().Contains(semest))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Semester().Contains(semest))
+                {
+                    results.Add(b);
+                }
+            }
+        }
+    }
 }
