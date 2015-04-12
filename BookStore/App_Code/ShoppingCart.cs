@@ -9,41 +9,37 @@ using System.Web;
 public class ShoppingCart
 {
 
-    private List<Book> books;
+    private List<CartBook> cartBooks;
 
 	public ShoppingCart()
 	{
-		//
-		// TODO: Add constructor logic here
-		//
+        cartBooks = new List<CartBook>();
+
 	}
 
-    public float CartPrice
+    public float CartPrice ()
     {
-        get
-        {
-            throw new System.NotImplementedException();
-        }
+        float tempPrice = 0;
+        foreach(CartBook b in cartBooks)
+            {
+                tempPrice += b.GetPrice(b.GetType());
+            }
+        return tempPrice;
     }
 
-    public void AddBook()
+    public void AddBook(Book b, int t, int q)
     {
-        throw new System.NotImplementedException();
+        CartBook tempbook = new CartBook(b, t, q);
+        cartBooks.Add(tempbook);
     }
 
-    public void RemoveBook()
+    public void RemoveBook(CartBook b)
     {
-        throw new System.NotImplementedException();
+        cartBooks.Remove(b);
     }
 
-    public void ChangeAmount()
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public void ChangeBookType()
-    {
-        throw new System.NotImplementedException();
-    }
+
+
 
 }
