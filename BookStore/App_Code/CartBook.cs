@@ -18,7 +18,10 @@ public class CartBook
 	{
         book = b;
         type = t;
-        quantity = q;
+        if (type == 3)
+            quantity = 1;
+        else
+            quantity = q;
 	}
 
     public void ChangeType(int t)
@@ -40,6 +43,12 @@ public class CartBook
     {
         return type;
     }
+
+    public int GetQuanity()
+    {
+        return quantity;
+    }
+
     public float GetPrice(int t)
     {
         switch(t)
