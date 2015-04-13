@@ -8,9 +8,9 @@ using System.Web;
 /// </summary>
 public class CartBook
 {
-    enum Type { New, Used, Rental, EBook }
+    public enum Type { New, Used, Rental, EBook }
     private Book book;
-    Type type;
+    private Type type;
     int quantity;
 
 	public CartBook(Book b, Type t, int q)

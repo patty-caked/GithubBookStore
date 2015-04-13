@@ -12,11 +12,18 @@ public partial class Search : System.Web.UI.Page
     {
         Searching serch = new Searching();
         Customer cust = (Customer)(Session["customer"]);
-        name.Text = cust.Username();
+        //name.Text = cust.Username();
         //Label1.Text = serch.GetBooks();
 
         List<Book> b = serch.BookList();
+    }
+    protected void SearchButton_Click(object sender, EventArgs e)
+    {
+        string[] searchList;
+        string input = isbn.Text + "," + title.Text + "," + author.Text + "," + semester.Text + "," + course.Text + "," + section.Text + "," + professor.Text + "," + crn.Text;
+        searchList = input.Split(',');
+        Session.Add("searchInput", searchList);
 
-        Label1.Text = "" + b[0].ISBN();
+        Response.Redirect("SearchResults.aspx");
     }
 }

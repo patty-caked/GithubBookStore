@@ -10,7 +10,9 @@
     <form id="form1" runat="server">
         <div>
 
-            <h1 style="text-align: center; ">SPSU Bookstore</h1>
+            <h1 style="text-align: center; ">
+                SPSU Bookstore
+            </h1>
     
             <p aria-orientation="horizontal" style="text-align: center">
                 Username:&nbsp; 
