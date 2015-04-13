@@ -1,0 +1,9 @@
+john@spsu.edu
+jeff@spsu.edu
+bob@spsu.edu
+jane@spsu.edu
+jill@spsu.edu
+ian@spsu.edu
+adam@spsu.edu
+aaron@spsu.edu
+patrick@spsu.edu

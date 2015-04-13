@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,21 +10,45 @@ using System.Web;
 public class Customer
 {
 
-    private String username;
-    private String password;
+
+    private String passwordEntered;
+    private String passwordValid;
+    private String usernameEntered;
+    private List<String> usernamesValid;
+    private string usernameTemp;
     ShoppingCart cart;
 
 	public Customer(String u, String p)
 	{
-        username = u;
-        password = p;
+        usernameEntered = u;
+        passwordEntered = p;
+        usernamesValid = new List<string>();
 	}
 
     public bool IsValid()
     {
-        if (password == "1234568")
+        StreamReader srp = new StreamReader("C:/DEV/VS/WEB/GithubBookStore/BookStore/App_Data/Password.txt");
+        string passwordValid = srp.ReadLine();
+        srp.Close();
+
+        StreamReader sru = new StreamReader("C:/DEV/VS/WEB/GithubBookStore/BookStore/App_Data/Email.txt");
+        for(int i = 0; i <= 8; i++)
         {
-            return true;
+            string usernameTemp = sru.ReadLine();
+            usernamesValid.Add(usernameTemp);
+        }
+        sru.Close();
+
+        if (passwordEntered == passwordValid)
+        {
+            if (usernamesValid.Contains(usernameEntered))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -33,12 +58,12 @@ public class Customer
 
     public String Username()
     {
-        return username;
+        return usernameEntered;
     }
 
     public String Password()
     {
-        return password;
+        return passwordEntered;
     }
 
 }
