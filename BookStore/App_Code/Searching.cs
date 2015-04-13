@@ -13,11 +13,12 @@ public class Searching
     private List<Book> bookList;
     private List<Book> results;
 
-	public Searching()
-	{
+    public Searching()
+    {
         bookList = new List<Book>();
+        results = new List<Book>();
         GenerateBookList();
-	}
+    }
 
     public void GenerateBookList()
     {
@@ -28,7 +29,7 @@ public class Searching
         {
             string[] b = line.Split(',');
             //Holy fuuuuck man look at all these arguments!
-            Book tempbook = new Book(b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7],b[8],b[9],b[10],b[11],b[12],b[13],b[14],b[15],b[16],b[17]);
+            Book tempbook = new Book(b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17]);
             bookList.Add(tempbook);
         }
 
@@ -46,28 +47,8 @@ public class Searching
         string[] words = file.ReadLine().Split(',');
 
         file.Close();
-        
+
         return words[0];
-    }
-
-    public List<Book> ReturnResults()
-    {
-        return results;
-    }
-
-    public List<Book> BookList()
-    {
-        return bookList;
-    }
-
-    public void AddBookToResults(Book b)
-    {
-        results.Add(b);
-    }
-
-    public void RemoveBookFromResults(Book b)
-    {
-        results.Remove(b);
     }
 
     public void Search(string isbn, string title, string author, string semester, string course, string section, string professor, string crn)
@@ -106,9 +87,29 @@ public class Searching
         }
     }
 
+    public List<Book> ReturnResults()
+    {
+        return results;
+    }
+
+    public List<Book> BookList()
+    {
+        return bookList;
+    }
+
+    public void AddBookToResults(Book b)
+    {
+        results.Add(b);
+    }
+
+    public void RemoveBookFromResults(Book b)
+    {
+        results.Remove(b);
+    }
+
     private void SearchByISBN(string i)
     {
-        if (results.Count > 1)
+        if (results.Count >= 1)
         {
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
@@ -135,7 +136,7 @@ public class Searching
 
     private void SearchByTitle(string tit)
     {
-        if (results.Count > 1)
+        if (results.Count >= 1)
         {
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
@@ -162,7 +163,7 @@ public class Searching
 
     private void SearchByAuthor(string auth)
     {
-        if (results.Count > 1)
+        if (results.Count >= 1)
         {
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
@@ -187,9 +188,36 @@ public class Searching
         }
     }
 
+    private void SearchBySemester(string semest)
+    {
+        if (results.Count >= 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Semester().Contains(semest))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Semester().Contains(semest))
+                {
+                    results.Add(b);
+                }
+            }
+        }
+    }
+
     private void SearchByCourse(string cour)
     {
-        if (results.Count > 1)
+        if (results.Count >= 1)
         {
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
@@ -214,9 +242,36 @@ public class Searching
         }
     }
 
+    private void SearchBySection(string sec)
+    {
+        if (results.Count >= 1)
+        {
+            List<Book> tempList = new List<Book>();
+            foreach (Book b in results)
+            {
+                if (b.Section().Contains(sec))
+                {
+                    tempList.Add(b);
+                }
+            }
+            results.Clear();
+            results.AddRange(tempList);
+        }
+        else
+        {
+            foreach (Book b in bookList)
+            {
+                if (b.Section() == sec)
+                {
+                    results.Add(b);
+                }
+            }
+        }
+    }
+
     private void SearchByProfessor(string prof)
     {
-        if (results.Count > 1)
+        if (results.Count >= 1)
         {
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
@@ -243,7 +298,7 @@ public class Searching
 
     private void SearchByCRN(string c)
     {
-        if (results.Count > 1)
+        if (results.Count >= 1)
         {
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
@@ -261,60 +316,6 @@ public class Searching
             foreach (Book b in bookList)
             {
                 if (b.CRN() == c)
-                {
-                    results.Add(b);
-                }
-            }
-        }
-    }
-
-    private void SearchBySection(string sec)
-    {
-        if (results.Count > 1)
-        {
-            List<Book> tempList = new List<Book>();
-            foreach (Book b in results)
-            {
-                if (b.Section().Contains(sec))
-                {
-                    tempList.Add(b);
-                }
-            }
-            results.Clear();
-            results.AddRange(tempList);
-        }
-        else
-        {
-            foreach (Book b in bookList)
-            {
-                if (b.Section() == sec)
-                {
-                    results.Add(b);
-                }
-            }
-        }
-    }
-
-    private void SearchBySemester(string semest)
-    {
-        if (results.Count > 1)
-        {
-            List<Book> tempList = new List<Book>();
-            foreach (Book b in results)
-            {
-                if (b.Semester().Contains(semest))
-                {
-                    tempList.Add(b);
-                }
-            }
-            results.Clear();
-            results.AddRange(tempList);
-        }
-        else
-        {
-            foreach (Book b in bookList)
-            {
-                if (b.Semester().Contains(semest))
                 {
                     results.Add(b);
                 }

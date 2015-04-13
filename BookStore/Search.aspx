@@ -24,15 +24,34 @@
                 SPSU Bookstore
             </h1>
 
-            <p>
-                Search:
-                </p>
-
-            <p>
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <p style="font-weight: 700">
+                ISBN:<asp:TextBox ID="isbn" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                Title:<asp:TextBox ID="title" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                Author:<asp:TextBox ID="author" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                Semester:<asp:TextBox ID="semester" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                Course:<asp:TextBox ID="course" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                Section:<asp:TextBox ID="section" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                Professor:<asp:TextBox ID="professor" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                CRN:<asp:TextBox ID="crn" runat="server" Width="170px"></asp:TextBox>
+            </p>
+            <p style="font-weight: 700">
+                <asp:Button ID="SearchButton" runat="server" Text="Search" Width="130px" OnClick="SearchButton_Click" />
             </p>
         </div>
-        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
     </form>
     </body>
 </html>
