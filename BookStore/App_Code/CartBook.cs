@@ -9,20 +9,64 @@ using System.Web;
 public class CartBook
 {
     enum Type { New, Used, Rental, EBook }
+
     private Book book;
-    Type type;
+    int type;
     int quantity;
 
-	public CartBook(Book b, Type t, int q)
-	{
+    public CartBook(Book b, int t, int q)
+    {
         book = b;
         type = t;
-        quantity = q;
-	}
+        if (type == 3)
+            quantity = 1;
+        else
+            quantity = q;
+    }
 
-    public void ChangeType(Type t)
+    public void ChangeType(int t)
     {
-        if (t == Type.EBook)
         type = t;
+    }
+
+    public void ChangeAmount(int q)
+    {
+        quantity = q;
+    }
+
+    public Book GetBook()
+    {
+        return book;
+    }
+
+    public int GetType()
+    {
+        return type;
+    }
+
+    public int GetQuanity()
+    {
+        return quantity;
+    }
+
+    public float GetPrice(int t)
+    {
+        switch (t)
+        {
+            case 0:
+                return book.PriceNew();
+
+            case 1:
+                return book.PriceUsed();
+
+            case 2:
+                return book.PriceRental();
+
+            case 3:
+                return book.PriceEBook();
+
+            default:
+                return 0;
+        }
     }
 }
