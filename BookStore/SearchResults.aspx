@@ -16,7 +16,7 @@
         </h1>
 
         <asp:Panel ID="Results" runat="server">
-            <asp:GridView ID="resultsGrid" runat="server" >
+            <asp:GridView ID="resultsGrid" runat="server">
             </asp:GridView>
         </asp:Panel>
 
