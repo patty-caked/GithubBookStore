@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.IO;
 
 public partial class SearchResults : System.Web.UI.Page
 {
@@ -22,8 +23,7 @@ public partial class SearchResults : System.Web.UI.Page
 
         CreateResultTable(resultList, resultList.Count());
 
-        FillRows(resultList);
-
+        FillRows(resultList, resultList.Count());
 
         //resultsGrid.Rows[1].Cells[3].Text = "hello";
     }
@@ -31,6 +31,7 @@ public partial class SearchResults : System.Web.UI.Page
     public void CreateResultTable(List<Book> b, int num)
     {
         DataTable dt = new DataTable();
+        dt.Columns.Add("Cover");
         dt.Columns.Add("ISBN");
         dt.Columns.Add("Title");
         dt.Columns.Add("Author");
@@ -40,7 +41,8 @@ public partial class SearchResults : System.Web.UI.Page
         dt.Columns.Add("Professor");
         dt.Columns.Add("CRN");
         dt.Columns.Add("Required/Recommended");
-        dt.Columns.Add("Cover");
+        dt.Columns.Add(" ");
+        
         //dt.Columns.Add(new DataColumn("Cover", typeof(ImageField)));
         //dt.Columns.Add("");
         for (int i = 0; i < num; i++)
@@ -55,10 +57,12 @@ public partial class SearchResults : System.Web.UI.Page
             dr["Professor"] = b[i].Professor(); //"Professor-" + i;
             dr["CRN"] = b[i].CRN(); //"CRN-" + i;
             dr["Required/Recommended"] = b[i].Requirement(); //"Required/Recommended-" + i;
-            //ImageField imf = new ImageField();
-            //Image img = new Image();
-            //img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
+            Image img = new Image();
+            img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
+            //img.ImageUrl = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
             dr["Cover"] = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
+            dr[" "] = " ";
+
             dt.Rows.Add(dr);
             dt.AcceptChanges();
         }
@@ -67,10 +71,28 @@ public partial class SearchResults : System.Web.UI.Page
     }
 
     /// <summary>
-    /// This method will fill in the result table with the proper information about the results gathered from the search
+    /// Adds the image files to the DataList
     /// </summary>
-    protected void FillRows(List<Book> b)
+    protected void FillRows(List<Book> b,int num)
     {
         //resultsGrid.Rows[1].Cells[3].Text = "hello";
+        for (int i = 0; i < num; i++)
+        {
+            //ImageField imf = new ImageField();
+            ImageButton imgButt = new ImageButton();
+            imgButt.ID = "Butt" + i;
+            imgButt.ImageUrl = ResolveUrl(b[i].ISBN() + ".jpg");
+            resultsGrid.Rows[i].Cells[0].Controls.Add(imgButt);
+
+            imgButt.OnClientClick = "ButtClick";
+
+            //button stuff
+            //Button butt = new Button();
+            //butt.GetRouteUrl()
+        }
+    }
+    protected void ButtClick(ImageButton sender, ImageClickEventArgs e)
+    {
+        
     }
 }
