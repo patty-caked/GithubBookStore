@@ -65,5 +65,9 @@ public class Customer
     {
         return passwordEntered;
     }
+    public ShoppingCart Cart()
+    {
+        return cart;
+    }
 
 }

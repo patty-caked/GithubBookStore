@@ -106,6 +106,11 @@
                 <asp:Label ID="descript" runat="server" Text="Label"></asp:Label>
 
             </p>
+            <p>
+
+                <asp:Button ID="Button1" runat="server" Text="Add To Shopping Cart;" />
+
+            </p>
             
         </div>
     </form>

@@ -88,7 +88,7 @@ public partial class SearchResults : System.Web.UI.Page
             
             //imgButt.OnClientClick = "Butt_Click";
             //imgButt.Attributes.Add("onclick", "Butt_Click");
-            //imgButt.Click += new EventHandler(Butt_Click);
+            imgButt.Click += Butt_Click;
             //figure out how to add books to the cart
             //imgButt.run
             //button stuff
@@ -96,10 +96,11 @@ public partial class SearchResults : System.Web.UI.Page
             //butt.GetRouteUrl()
         }
     }
-    protected void Butt_Click(ImageButton sender, ImageClickEventArgs e)
+
+    private void Butt_Click(object sender, ImageClickEventArgs e)
     {
-        Session.Add("book", resultList[0]);
-        Session.Add("book", resultList[Convert.ToInt32(sender.ID)]);
+        ImageButton temp = sender as ImageButton;
+        Session.Add("book", resultList[Convert.ToInt32(temp.ID)]);
         Response.Redirect("BookPage.aspx");
     }
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
