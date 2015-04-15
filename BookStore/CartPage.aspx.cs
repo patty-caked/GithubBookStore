@@ -105,12 +105,12 @@ public partial class CartPage : System.Web.UI.Page
     protected void CheckoutButton_Click(object sender, EventArgs e)
     {
         Session.Add("customer", cust);
-        Response.Redirect("Checkout.aspx");
+        Response.Redirect("CheckoutPage.aspx");
     }
     protected void UpdateCart(object sender, EventArgs e)
     {
         updatetype();
-        updateamount();
+        //updateamount();
         Session.Add("customer", cust);
     }
     public void removebutton(object sender, EventArgs e)
