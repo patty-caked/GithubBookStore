@@ -69,5 +69,8 @@ public class Customer
     {
         return cart;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 235b85795ee6290e78f4b792587764755146592b
 }
