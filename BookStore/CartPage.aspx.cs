@@ -24,18 +24,11 @@ public partial class CartPage : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
         dt.Columns.Add("Cover");
-       // dt.Columns.Add("ISBN");
         dt.Columns.Add("Title");
         dt.Columns.Add("Author");
         dt.Columns.Add("Type");
         dt.Columns.Add("Price");
-       // dt.Columns.Add("Semester");
-       // dt.Columns.Add("Course");
-       // dt.Columns.Add("Section");
-       // dt.Columns.Add("Professor");
-       // dt.Columns.Add("CRN");
-       // dt.Columns.Add("Required/Recommended");
-        //dt.Columns.Add(" ");
+        dt.Columns.Add("remove");
 
 
         //dt.Columns.Add(new DataColumn("Cover", typeof(ImageField)));
@@ -48,16 +41,10 @@ public partial class CartPage : System.Web.UI.Page
             dr["Author"] = b[i].GetBook().Author(); //"Author-" + i;
             dr["type"] = b[i].gettypestring();
             dr["price"] = b[i].GetPrice().ToString();
-          //  dr["Semester"] = b[i].GetBook().Semester(); //"Semester-" + i;
-          //  dr["Course"] = b[i].GetBook().Course(); //"Course-" + i;
-          //  dr["Section"] = b[i].GetBook().Section(); //"Section-" + i;
-          //  dr["Professor"] = b[i].GetBook().Professor(); //"Professor-" + i;
-          //  dr["CRN"] = b[i].GetBook().CRN(); //"CRN-" + i;
-          //  dr["Required/Recommended"] = b[i].GetBook().Requirement(); //"Required/Recommended-" + i;
             Image img = new Image();
             img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].GetBook().ISBN() + ".jpg");
-            //img.ImageUrl = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
             dr["Cover"] = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].GetBook().ISBN() + ".jpg");
+            dr["remove"] = "";
           //  dr[" "] = " ";
 
             dt.Rows.Add(dr);
@@ -77,7 +64,13 @@ public partial class CartPage : System.Web.UI.Page
             imgButt.ImageUrl = ResolveUrl(b[i].GetBook().ISBN() + ".jpg");
             Cart.Rows[i].Cells[0].Controls.Add(imgButt);
 
-            DropDownList typeselect = new DropDownList();
+            Button remove = new Button();
+            Cart.Rows[i].Cells[5].Controls.Add(remove);
+            remove.ID = "" + i;
+            remove.Text = "remove item";
+            remove.Click += removebutton;
+
+         /*   DropDownList typeselect = new DropDownList();
             typeselect.ID = "t"+i;
             ListItem typea = new ListItem();
             ListItem typeb = new ListItem();
@@ -102,7 +95,7 @@ public partial class CartPage : System.Web.UI.Page
 
             Cart.Rows[i].Cells[3].Controls.Add(typeselect);
             typelist.Add(typeselect);
-
+*/
             //button stuff
             //Button butt = new Button();
             //butt.GetRouteUrl()
@@ -117,6 +110,13 @@ public partial class CartPage : System.Web.UI.Page
         updatetype();
         updateamount();
     }
+    public void removebutton(object sender, EventArgs e)
+    {
+        Button remove = sender as Button;
+        cart.CartBooks().RemoveAt(Convert.ToInt32(remove.ID));
+        //Updatesessionvariable
+        Response.Redirect("CartPage.aspx");
+    }
     public void updatetype()
     {
         for (int i = 0; i < cart.CartBooks().Count(); i++)
@@ -125,6 +125,7 @@ public partial class CartPage : System.Web.UI.Page
                 cart.CartBooks()[i].ChangeType(Convert.ToInt32(typelist[i].SelectedValue));
         }
     }
+
     public void updateamount()
     {
  
