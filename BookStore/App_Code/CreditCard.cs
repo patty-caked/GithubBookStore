@@ -44,4 +44,10 @@ public class CreditCard
         //DateTime now = DateTime.Now;
         //int test = DateTime.Compare(expDate, now);
     }
+
+    public string CcNum()
+    {
+        return ccNum;
+    }
+    
 }

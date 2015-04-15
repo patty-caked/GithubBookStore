@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
+using System.IO;
 
 /// <summary>
 /// Summary description for Checkout
@@ -53,5 +54,29 @@ public class Checkout
     public float OrderPrice()
     {
         return orderPrice;
+    }
+
+    public void CreateReceipt(CreditCard c)
+    {
+        StreamReader sr = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/Index"));
+        int index = Convert.ToInt32(sr.ReadLine());
+        sr.Close();
+        string cc = c.CcNum();
+        string day = DateTime.Now.Day.ToString();
+        string month = DateTime.Now.Month.ToString();
+        string year = DateTime.Now.Year.ToString();
+        string date = day + "/" + month + "/" + year;
+        StreamWriter swR = new StreamWriter(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/" + index + "receipt.txt"));
+        swR.WriteLine(date);
+        swR.WriteLine(orderPrice);
+        swR.WriteLine(cc);
+        swR.Close();
+        index++;
+        StreamWriter swI = new StreamWriter(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/Index.txt"));
+        swI.WriteLine(index);
+        swI.Close();
+
+
+        
     }
 }
