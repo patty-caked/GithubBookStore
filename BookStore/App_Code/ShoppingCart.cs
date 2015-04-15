@@ -12,7 +12,7 @@ public class ShoppingCart
     private List<CartBook> cartBooks;
 
     //testcode
-    private List<Book> bookList;
+    //private List<Book> bookList;
     Random r = new Random();
     //testcode
 
@@ -21,7 +21,7 @@ public class ShoppingCart
         cartBooks = new List<CartBook>();
         //testcode
         //bookList = new List<Book>();
-        GenerateBookList();
+        //GenerateBookList();
         // CartBookTest();
         //testcode
     }
@@ -74,14 +74,14 @@ public class ShoppingCart
         cartBooks.Remove(b);
     }
 
-    public void CartBookTest()
+    /*public void CartBookTest()
     {
         foreach (Book b in bookList)
         {
             AddBook(b, r.Next(0, 3), r.Next(1, 3));
 
         }
-    }
+    }*/
 
 
 

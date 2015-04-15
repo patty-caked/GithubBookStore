@@ -7,11 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class BookPage : System.Web.UI.Page
 {
+    Customer cust;
+    Book b;
     protected void Page_Load(object sender, EventArgs e)
     {
-        Book b = (Book)(Session["book"]);
-
+        b = (Book)(Session["book"]);
+        cust = (Customer)(Session["customer"]);
+        
         cover.ImageUrl = ResolveUrl(b.ISBN() + ".jpg");
+        isbn.Text = b.ISBN();
         title.Text = b.Title();
         author.Text = b.Author();
         semester.Text = b.Semester();
@@ -36,5 +40,16 @@ public partial class BookPage : System.Web.UI.Page
         prent.Text = b.PriceRental().ToString();
         pebook.Text = b.PriceEBook().ToString();
         descript.Text = b.Description();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        int i = Convert.ToInt32(typeList.SelectedValue);
+
+        if (i != 4)
+        {
+            cust.Cart().AddBook(b, i, 1);
+            Session.Add("customer", cust);
+            Response.Redirect("CartPage.aspx");
+        }
     }
 }

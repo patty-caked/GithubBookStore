@@ -8,17 +8,18 @@ using System.Data;
 
 public partial class CartPage : System.Web.UI.Page
 {
-    ShoppingCart cart;
+    //ShoppingCart cart;
     List<DropDownList> typelist;
+    Customer cust;
     protected void Page_Load(object sender, EventArgs e)
     {
+        cust = (Customer)(Session["customer"]);
         typelist = new List<DropDownList>();
-        cart = new ShoppingCart();
        // Label1.Text = cart.CartPrice().ToString();
         //Searching search = new Searching();
-        CreateResultTable(cart.CartBooks(), cart.CartBooks().Count());
-        TotalLabel.Text = cart.CartPrice().ToString();
-        FillRows(cart.CartBooks(),cart.CartBooks().Count());
+        CreateResultTable(cust.Cart().CartBooks(), cust.Cart().CartBooks().Count());
+        TotalLabel.Text = cust.Cart().CartPrice().ToString();
+        FillRows(cust.Cart().CartBooks(), cust.Cart().CartBooks().Count());
     }
     public void CreateResultTable(List<CartBook> b, int num)
     {
@@ -103,26 +104,33 @@ public partial class CartPage : System.Web.UI.Page
     }
     protected void CheckoutButton_Click(object sender, EventArgs e)
     {
+        Session.Add("customer", cust);
         Response.Redirect("Checkout.aspx");
     }
     protected void UpdateCart(object sender, EventArgs e)
     {
         updatetype();
         updateamount();
+        Session.Add("customer", cust);
     }
     public void removebutton(object sender, EventArgs e)
     {
         Button remove = sender as Button;
-        cart.CartBooks().RemoveAt(Convert.ToInt32(remove.ID));
+        cust.Cart().CartBooks().RemoveAt(Convert.ToInt32(remove.ID));
         //Updatesessionvariable
+        Session.Add("customer", cust);
+
         Response.Redirect("CartPage.aspx");
     }
     public void updatetype()
     {
-        for (int i = 0; i < cart.CartBooks().Count(); i++)
+        for (int i = 0; i < cust.Cart().CartBooks().Count(); i++)
         {
             if (typelist[i].SelectedIndex != 0)
-                cart.CartBooks()[i].ChangeType(Convert.ToInt32(typelist[i].SelectedValue));
+            {
+                //Session.Add("customer", cust);
+                cust.Cart().CartBooks()[i].ChangeType(Convert.ToInt32(typelist[i].SelectedValue));
+            }
         }
     }
 

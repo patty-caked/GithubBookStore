@@ -23,6 +23,7 @@ public class Customer
         usernameEntered = u;
         passwordEntered = p;
         usernamesValid = new List<string>();
+        cart = new ShoppingCart();
 	}
 
     public bool IsValid()

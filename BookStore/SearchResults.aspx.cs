@@ -42,7 +42,6 @@ public partial class SearchResults : System.Web.UI.Page
         dt.Columns.Add("Professor");
         dt.Columns.Add("CRN");
         dt.Columns.Add("Required/Recommended");
-        dt.Columns.Add(" ");
         
         //dt.Columns.Add(new DataColumn("Cover", typeof(ImageField)));
         //dt.Columns.Add("");
@@ -62,7 +61,6 @@ public partial class SearchResults : System.Web.UI.Page
             img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
             //img.ImageUrl = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
             dr["Cover"] = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
-            dr[" "] = " ";
 
             dt.Rows.Add(dr);
             dt.AcceptChanges();
