@@ -49,18 +49,38 @@ public class CartBook
         return quantity;
     }
 
-    public float GetPrice(int t)
+    public string gettypestring()
     {
-        switch (t)
+        switch (type)
         {
             case 0:
-                return book.PriceNew();
+                return "new";
 
             case 1:
-                return book.PriceUsed();
+                return "used";
 
             case 2:
-                return book.PriceRental();
+                return "rental";
+
+            case 3:
+                return "ebook";
+
+            default:
+                return "error";
+        }
+    }
+    public float GetPrice()
+    {
+        switch (type)
+        {
+            case 0:
+                return book.PriceNew()*quantity;
+
+            case 1:
+                return book.PriceUsed()*quantity;
+
+            case 2:
+                return book.PriceRental()*quantity;
 
             case 3:
                 return book.PriceEBook();

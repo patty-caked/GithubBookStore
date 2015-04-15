@@ -27,11 +27,11 @@ public class Customer
 
     public bool IsValid()
     {
-        StreamReader srp = new StreamReader("C:/DEV/VS/WEB/GithubBookStore/BookStore/App_Data/Password.txt");
+        StreamReader srp = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/Password.txt"));
         string passwordValid = srp.ReadLine();
         srp.Close();
 
-        StreamReader sru = new StreamReader("C:/DEV/VS/WEB/GithubBookStore/BookStore/App_Data/Email.txt");
+        StreamReader sru = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/Email.txt"));
         for(int i = 0; i <= 8; i++)
         {
             string usernameTemp = sru.ReadLine();

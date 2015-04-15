@@ -157,4 +157,9 @@ public class Book
     {
         return priceEBook;
     }
+
+    public string Description()
+    {
+        return description;
+    }
 }

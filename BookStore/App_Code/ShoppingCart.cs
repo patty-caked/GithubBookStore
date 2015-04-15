@@ -20,9 +20,9 @@ public class ShoppingCart
     {
         cartBooks = new List<CartBook>();
         //testcode
-        bookList = new List<Book>();
+        //bookList = new List<Book>();
         GenerateBookList();
-        CartBookTest();
+        // CartBookTest();
         //testcode
     }
 
@@ -37,7 +37,7 @@ public class ShoppingCart
             string[] b = line.Split(',');
             //Holy fuuuuck man look at all these arguments!
             Book tempbook = new Book(b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17]);
-            bookList.Add(tempbook);
+            AddBook(tempbook, 1, 50);
         }
 
         file.Close();
@@ -50,7 +50,7 @@ public class ShoppingCart
         float priceSum = 0;
         foreach (CartBook b in cartBooks)
         {
-            priceTemp += b.GetPrice(b.GetType());
+            priceTemp += b.GetPrice();
             priceTemp *= b.GetQuanity();
             priceSum += priceTemp;
             priceTemp = 0;
@@ -58,10 +58,15 @@ public class ShoppingCart
         return priceSum;
     }
 
+
     public void AddBook(Book b, int t, int q)
     {
         CartBook tempbook = new CartBook(b, t, q);
         cartBooks.Add(tempbook);
+    }
+    public List <CartBook> CartBooks()
+    {
+        return cartBooks;
     }
 
     public void RemoveBook(CartBook b)

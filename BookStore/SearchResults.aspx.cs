@@ -9,6 +9,7 @@ using System.IO;
 
 public partial class SearchResults : System.Web.UI.Page
 {
+    List<Book> resultList;
     protected void Page_Load(object sender, EventArgs e)
     {
         //userName = (String)(Session["username"]);
@@ -19,7 +20,7 @@ public partial class SearchResults : System.Web.UI.Page
         search.Search(sl[0], sl[1], sl[2], sl[3], sl[4], sl[5], sl[6], sl[7]);
 
         //resultList will be the list of results displayed on the page
-        List<Book> resultList = search.ReturnResults();
+        resultList = search.ReturnResults();
 
         CreateResultTable(resultList, resultList.Count());
 
@@ -80,19 +81,31 @@ public partial class SearchResults : System.Web.UI.Page
         {
             //ImageField imf = new ImageField();
             ImageButton imgButt = new ImageButton();
-            imgButt.ID = "Butt" + i;
+            imgButt.ID = "" + i;
+            
             imgButt.ImageUrl = ResolveUrl(b[i].ISBN() + ".jpg");
             resultsGrid.Rows[i].Cells[0].Controls.Add(imgButt);
-
-            imgButt.OnClientClick = "ButtClick";
-
+            
+            //imgButt.OnClientClick = "Butt_Click";
+            //imgButt.Attributes.Add("onclick", "Butt_Click");
+            //imgButt.Click += new EventHandler(Butt_Click);
+            //figure out how to add books to the cart
+            //imgButt.run
             //button stuff
             //Button butt = new Button();
             //butt.GetRouteUrl()
         }
     }
-    protected void ButtClick(ImageButton sender, ImageClickEventArgs e)
+    protected void Butt_Click(ImageButton sender, ImageClickEventArgs e)
     {
-        
+        Session.Add("book", resultList[0]);
+        Session.Add("book", resultList[Convert.ToInt32(sender.ID)]);
+        Response.Redirect("BookPage.aspx");
     }
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        Session.Add("book", resultList[0]);
+        Response.Redirect("BookPage.aspx");
+    }
+
 }
