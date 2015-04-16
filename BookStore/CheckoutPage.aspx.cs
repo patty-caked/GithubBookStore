@@ -11,7 +11,7 @@ public partial class CheckoutPage : System.Web.UI.Page
     private Customer cust;
     protected void Page_Load(object sender, EventArgs e)
     {
-       cust = (Customer)(Session["Customer"]);
+       cust = (Customer)(Session["customer"]);
        co = new Checkout(cust);
        
 
@@ -22,12 +22,14 @@ public partial class CheckoutPage : System.Web.UI.Page
         string cn = ccnumber.Text;
         string vn = ccverification.Text;
         int mon = Convert.ToInt32(month.SelectedValue);
-        int yea = Convert.ToInt32(month.SelectedValue);
+        int yea = Convert.ToInt32(year.SelectedValue);
         DateTime dt = new DateTime(yea,mon,1);
         co.CreateCreditCard(cn,vn, dt);
 
         if (co.VerifyInfo())
         {
+            co.CreateReceipt();
+            cust.Cart().CartBooks().Clear();
             Response.Redirect("CompleteOrder.aspx");
         }
         else

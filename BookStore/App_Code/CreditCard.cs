@@ -29,7 +29,7 @@ public class CreditCard
             {
                 DateTime now = DateTime.Now;
                 int test = DateTime.Compare(expDate, now);
-                if (test == -1)
+                if (test == 1)
                 {
                     return true;
                 }

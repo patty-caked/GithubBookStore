@@ -10,7 +10,14 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <p>
 
+            <asp:HyperLink ID="SearchLink" runat="server" NavigateUrl="~/Search.aspx">Go to Search Page</asp:HyperLink>
+
+        &nbsp;|
+                <asp:HyperLink ID="CartLink" runat="server" NavigateUrl="~/CartPage.aspx">Go to Shopping Cart</asp:HyperLink>
+
+        </p>
         <h1 style="text-align: center">
             Search Results
         </h1>

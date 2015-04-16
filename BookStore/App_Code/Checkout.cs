@@ -29,6 +29,11 @@ public class Checkout
         cc = new CreditCard(cn, vn, d);
     }
 
+    public CreditCard CreditCard()
+     {
+         return cc;
+     }
+
     public bool VerifyInfo ()
     {
         if(cc.ConfirmInfo())
@@ -56,27 +61,24 @@ public class Checkout
         return orderPrice;
     }
 
-    public void CreateReceipt(CreditCard c)
+    public void CreateReceipt()
     {
-        StreamReader sr = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/Index"));
+        StreamReader sr = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/Index.txt"));
         int index = Convert.ToInt32(sr.ReadLine());
         sr.Close();
-        string cc = c.CcNum();
+        string ccNum = "Credit Card Number: " + cc.CcNum();
         string day = DateTime.Now.Day.ToString();
         string month = DateTime.Now.Month.ToString();
         string year = DateTime.Now.Year.ToString();
-        string date = day + "/" + month + "/" + year;
+        string date = "Date: " + day + "/" + month + "/" + year;
         StreamWriter swR = new StreamWriter(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/" + index + "receipt.txt"));
         swR.WriteLine(date);
-        swR.WriteLine(orderPrice);
-        swR.WriteLine(cc);
+        swR.WriteLine("Order Price: $" + orderPrice);
+        swR.WriteLine(ccNum);
         swR.Close();
         index++;
         StreamWriter swI = new StreamWriter(HttpContext.Current.Server.MapPath("~/App_Data/Receipt/Index.txt"));
         swI.WriteLine(index);
         swI.Close();
-
-
-        
     }
 }

@@ -17,7 +17,10 @@
     <form id="form1" runat="server">
         <div>
             <p>
-                Logged in as: <asp:Label ID="name" runat="server" />
+
+                <%--Logged in as: <asp:Label ID="name" runat="server" />--%>
+
+                <asp:HyperLink ID="CartLink" runat="server" NavigateUrl="~/CartPage.aspx">Go to Shopping Cart</asp:HyperLink>
             </p>
 
             <h1 style="text-align: center">

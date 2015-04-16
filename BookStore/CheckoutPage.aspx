@@ -9,6 +9,14 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <p>
+
+            <asp:HyperLink ID="SearchLink" runat="server" NavigateUrl="~/Search.aspx">Cancel and go to Search Page</asp:HyperLink>
+
+        &nbsp;|
+                <asp:HyperLink ID="CartLink" runat="server" NavigateUrl="~/CartPage.aspx">Cancel and go to Shopping Cart</asp:HyperLink>
+
+        </p>
         <h1 style="text-align: center">
             Checkout
         </h1>
@@ -44,7 +52,8 @@
                 <asp:ListItem>12</asp:ListItem>
             </asp:DropDownList>
 
-            <br />Year:&nbsp; <asp:DropDownList ID="year" runat="server">
+            <br />
+Year:&nbsp; <asp:DropDownList ID="year" runat="server">
                 <asp:ListItem>2015</asp:ListItem>
                 <asp:ListItem>2016</asp:ListItem>
                 <asp:ListItem>2017</asp:ListItem>

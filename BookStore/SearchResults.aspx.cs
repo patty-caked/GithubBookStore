@@ -57,8 +57,8 @@ public partial class SearchResults : System.Web.UI.Page
             dr["Professor"] = b[i].Professor(); //"Professor-" + i;
             dr["CRN"] = b[i].CRN(); //"CRN-" + i;
             dr["Required/Recommended"] = b[i].Requirement(); //"Required/Recommended-" + i;
-            Image img = new Image();
-            img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
+            //Image img = new Image();
+            //img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
             //img.ImageUrl = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
             dr["Cover"] = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].ISBN() + ".jpg");
 
@@ -82,6 +82,7 @@ public partial class SearchResults : System.Web.UI.Page
             imgButt.ID = "" + i;
             
             imgButt.ImageUrl = ResolveUrl(b[i].ISBN() + ".jpg");
+            imgButt.Height = 200;
             resultsGrid.Rows[i].Cells[0].Controls.Add(imgButt);
             
             //imgButt.OnClientClick = "Butt_Click";

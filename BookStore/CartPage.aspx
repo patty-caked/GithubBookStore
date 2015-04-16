@@ -9,14 +9,20 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+        <p>
+
+            <asp:HyperLink ID="SearchLink" runat="server" NavigateUrl="~/Search.aspx">Go to Search Page</asp:HyperLink>
+
+        </p>
         <h1 class="auto-style3">
     
         <strong style="text-align: center"><span class="auto-style2">Shopping Cart</span></strong></h1>
+
+            <asp:Label ID="empty" runat="server" Text="Label"></asp:Label>
         
         <asp:GridView ID="Cart" runat="server">
         </asp:GridView>
-        <asp:Button ID="Update" runat="server" Text="Update Cart" OnClick="UpdateCart" />
+        <%--<asp:Button ID="Update" runat="server" Text="Update Cart" OnClick="UpdateCart" />--%>
         <br />
 
 

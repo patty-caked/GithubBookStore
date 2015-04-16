@@ -17,6 +17,14 @@ public partial class CartPage : System.Web.UI.Page
         typelist = new List<DropDownList>();
        // Label1.Text = cart.CartPrice().ToString();
         //Searching search = new Searching();
+        if (cust.Cart().CartBooks().Count() == 0)
+        {
+            empty.Text = "Shopping Cart is Empty";
+        }
+        else
+        {
+            empty.Text = "";
+        }
         CreateResultTable(cust.Cart().CartBooks(), cust.Cart().CartBooks().Count());
         TotalLabel.Text = cust.Cart().CartPrice().ToString();
         FillRows(cust.Cart().CartBooks(), cust.Cart().CartBooks().Count());
@@ -40,12 +48,12 @@ public partial class CartPage : System.Web.UI.Page
            // dr["ISBN"] = b[i].GetBook().ISBN(); //"ISBN-" + i;
             dr["Title"] = b[i].GetBook().Title(); //"Title-" + i;
             dr["Author"] = b[i].GetBook().Author(); //"Author-" + i;
-            dr["type"] = b[i].gettypestring();
-            dr["price"] = b[i].GetPrice().ToString();
+            dr["Type"] = b[i].gettypestring();
+            dr["Price"] = "$" + b[i].GetPrice().ToString();
             Image img = new Image();
             img.ImageUrl = Server.MapPath("~/App_Data/BookData/BookImages/" + b[i].GetBook().ISBN() + ".jpg");
             dr["Cover"] = ResolveUrl("~/App_Data/BookData/BookImages/" + b[i].GetBook().ISBN() + ".jpg");
-            dr["remove"] = "";
+            dr["Remove"] = "";
           //  dr[" "] = " ";
 
             dt.Rows.Add(dr);
@@ -132,10 +140,5 @@ public partial class CartPage : System.Web.UI.Page
                 cust.Cart().CartBooks()[i].ChangeType(Convert.ToInt32(typelist[i].SelectedValue));
             }
         }
-    }
-
-    public void updateamount()
-    {
- 
     }
 }
