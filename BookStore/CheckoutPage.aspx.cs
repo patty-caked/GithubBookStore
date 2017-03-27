@@ -11,9 +11,10 @@ public partial class CheckoutPage : System.Web.UI.Page
     private Customer cust;
     protected void Page_Load(object sender, EventArgs e)
     {
+
        cust = (Customer)(Session["customer"]);
        co = new Checkout(cust);
-       
+       price.Text = Convert.ToString("$" + co.OrderPrice());
 
        
     }

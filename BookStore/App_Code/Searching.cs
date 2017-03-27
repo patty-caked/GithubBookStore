@@ -34,6 +34,7 @@ public class Searching
         }
 
         file.Close();
+        //bookList.Sort((x, y) => string.Compare(x.Title(), y.Title()));
     }
 
     public String GetBooks()
@@ -141,7 +142,7 @@ public class Searching
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
             {
-                if (b.Title().Contains(tit))
+                if (b.Title().ToLower().Contains(tit.ToLower()))
                 {
                     tempList.Add(b);
                 }
@@ -153,7 +154,7 @@ public class Searching
         {
             foreach (Book b in bookList)
             {
-                if (b.Title().Contains(tit))
+                if (b.Title().ToLower().Contains(tit.ToLower()))
                 {
                     results.Add(b);
                 }
@@ -168,7 +169,7 @@ public class Searching
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
             {
-                if (b.Author().Contains(auth))
+                if (b.Author().ToLower().Contains(auth.ToLower()))
                 {
                     tempList.Add(b);
                 }
@@ -180,7 +181,7 @@ public class Searching
         {
             foreach (Book b in bookList)
             {
-                if (b.Author().Contains(auth))
+                if (b.Author().ToLower().Contains(auth.ToLower()))
                 {
                     results.Add(b);
                 }
@@ -195,7 +196,7 @@ public class Searching
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
             {
-                if (b.Semester().Contains(semest))
+                if (b.Semester().ToLower().Contains(semest.ToLower()))
                 {
                     tempList.Add(b);
                 }
@@ -207,7 +208,7 @@ public class Searching
         {
             foreach (Book b in bookList)
             {
-                if (b.Semester().Contains(semest))
+                if (b.Semester().ToLower().Contains(semest.ToLower()))
                 {
                     results.Add(b);
                 }
@@ -222,7 +223,7 @@ public class Searching
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
             {
-                if (b.Course().Contains(cour))
+                if (b.Course().ToLower().Contains(cour.ToLower()))
                 {
                     tempList.Add(b);
                 }
@@ -234,7 +235,7 @@ public class Searching
         {
             foreach (Book b in bookList)
             {
-                if (b.Title().Contains(cour))
+                if (b.Course().ToLower().Contains(cour.ToLower()))
                 {
                     results.Add(b);
                 }
@@ -276,7 +277,7 @@ public class Searching
             List<Book> tempList = new List<Book>();
             foreach (Book b in results)
             {
-                if (b.Course().Contains(prof))
+                if (b.Professor().ToLower().Contains(prof.ToLower()))
                 {
                     tempList.Add(b);
                 }
@@ -288,7 +289,7 @@ public class Searching
         {
             foreach (Book b in bookList)
             {
-                if (b.Title().Contains(prof))
+                if (b.Professor().ToLower().Contains(prof.ToLower()))
                 {
                     results.Add(b);
                 }
